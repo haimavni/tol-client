@@ -31,24 +31,6 @@ export function configure(aurelia: Aurelia) {
                 }
             });
         })
-        // .plugin('aurelia-i18n', (i18n) => {
-        //   i18n.i18next.use(Backend);
-
-        //   return i18n.setup({
-        //       backend: {
-        //           loadPath: './locales/{{lng}}/{{ns}}' + environment.i18n_ver + '.json',
-        //       },
-        //       lng: 'he',
-        //       fallbackLng: 'he',
-        //       debug: environment.debug
-        //   }).then(() => {
-        //       const router = aurelia.container.get(Router);
-        //       const events = aurelia.container.get(EventAggregator);
-
-        //       router.transformTitle = title => i18n.tr(title);
-        //       events.subscribe('i18n:locale:changed', () => { router.updateTitle(); });
-        //   })
-        
       .plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
         let aliases = ['t', 'i18n'];
         // add aliases for 't' attribute

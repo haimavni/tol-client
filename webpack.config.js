@@ -258,39 +258,11 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
         ...when(!tests, new CopyWebpackPlugin([
             { from: 'static', to: outDir, ignore: ['.*'] }])), // ignore dot (hidden) files
         ...when(analyze, new BundleAnalyzerPlugin()),
-        /**
-         * Note that the usage of following plugin cleans the webpack output directory before build.
-         * In case you want to generate any file in the output path as a part of pre-build step, this plugin will likely
-         * remove those before the webpack build. In that case consider disabling the plugin, and instead use something like
-         * `del` (https://www.npmjs.com/package/del), or `rimraf` (https://www.npmjs.com/package/rimraf).
-         */
-        // new AureliaPlugin(),
-        // new ModuleDependenciesPlugin({
-        //     "aurelia-froala-editor": ['./froala-editor'],
-        //     "parent-module": ["child-module"],
-        // }),
-        // new CopyWebpackPlugin([
-        //     { from: 'src/locales/', to: 'locales/' }
-        // ]),
-        // new ModuleDependenciesPlugin({
-        //     //'aurelia-testing': [ './compile-spy', './view-spy' ],
-        //     "aurelia-i18n": [
-        //         { name: "locales/en/translation.json", chunk: "lang-en" },
-        //         { name: "locales/he/translation.json", chunk: "lang-he" }
-        //     ]
-        // }),
         new AureliaPlugin(),
         new ModuleDependenciesPlugin({
             "aurelia-froala-editor": ['./froala-editor'],
             "parent-module": ["child-module"],
         }),
-        // new ModuleDependenciesPlugin({
-        //   'aurelia-testing': [ './compile-spy', './view-spy' ],
-        //   "aurelia-i18n": [ 
-        //     { name: "locales/en/translation.json", chunk: "lang-en" },
-        //     { name: "locales/no/translation.json", chunk: "lang-no" }
-        //   ]
-        // }),
         new CopyWebpackPlugin([
           { from: 'src/locales/', to: 'locales/' }
         ]),
