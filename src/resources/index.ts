@@ -31,7 +31,6 @@ export function configure(config) {
     PLATFORM.moduleName('./elements/chats/chat-button'),
     PLATFORM.moduleName('./elements/quiz/quiz'),
     PLATFORM.moduleName('./elements/quick-login'),
-    PLATFORM.moduleName('./elements/edit-side-by-side'),
-    PLATFORM.moduleName('froala-editor')
+    PLATFORM.moduleName('./elements/edit-side-by-side')
   ]);
 }

@@ -1,8 +1,14 @@
 import { Aurelia } from 'aurelia-framework';
 import * as environment from '../config/environment.json';
 import { PLATFORM } from 'aurelia-pal';
-import "froala-editor/js/froala_editor.pkgd.min";
-import "froala-editor/js/languages/he";
+//import "froala-editor/js/froala_editor.pkgd.min";
+//import "froala-editor/js/languages/he";
+//import * as Backend from 'i18next-xhr-backend';
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { Router } from 'aurelia-router';
+import {I18N, TCustomAttribute} from 'aurelia-i18n';
+import Backend from 'i18next-xhr-backend';
+//import "froala-editor/js/froala_editor.pkgd.min";
 
 export function configure(aurelia: Aurelia) {
     aurelia.use
@@ -25,6 +31,44 @@ export function configure(aurelia: Aurelia) {
                 }
             });
         })
+        // .plugin('aurelia-i18n', (i18n) => {
+        //   i18n.i18next.use(Backend);
+
+        //   return i18n.setup({
+        //       backend: {
+        //           loadPath: './locales/{{lng}}/{{ns}}' + environment.i18n_ver + '.json',
+        //       },
+        //       lng: 'he',
+        //       fallbackLng: 'he',
+        //       debug: environment.debug
+        //   }).then(() => {
+        //       const router = aurelia.container.get(Router);
+        //       const events = aurelia.container.get(EventAggregator);
+
+        //       router.transformTitle = title => i18n.tr(title);
+        //       events.subscribe('i18n:locale:changed', () => { router.updateTitle(); });
+        //   })
+        
+      .plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
+        let aliases = ['t', 'i18n'];
+        // add aliases for 't' attribute
+        TCustomAttribute.configureAliases(aliases);
+  
+        // register backend plugin
+        instance.i18next.use(Backend);
+  
+        // adapt options to your needs (see http://i18next.com/docs/options/)
+        // make sure to return the promise of the setup method, in order to guarantee proper loading
+        return instance.setup({
+          backend: {                                  // <-- configure backend settings
+            loadPath: './locales/{{lng}}/{{ns}}.json', // <-- XHR settings for where to get the files from
+          },
+          attributes: aliases,
+          lng : 'he',
+          fallbackLng : 'he',
+          debug : false
+        });
+      });
 
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-froala-editor'));
 

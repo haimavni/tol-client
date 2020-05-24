@@ -324,7 +324,7 @@ export class PhotoDetail {
     }
 
     create_marker(event) {
-        let latLng = event.detail.latLng,
+        let latLng = event.detail.latLng;
         this.latitude = latLng.lat();
         this.longitude = latLng.lng();
         this.markers = [{ latitude: this.latitude, longitude: this.longitude }]
