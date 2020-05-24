@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
-const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
+//const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -34,6 +34,16 @@ const sassRules = [
     }
   }
 ];
+
+const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
+
+plugins: [
+  new AureliaPlugin(),
+  new ModuleDependenciesPlugin({
+    "aurelia-froala-editor": [ './froala-editor' ],
+    "parent-module": [ "child-module" ],
+  }),
+]
 
 module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, host } = {}) => ({
   resolve: {

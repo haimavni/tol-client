@@ -1,0 +1,30 @@
+ul.doc-list {
+    .story-preview {
+        &.ltr {
+            margin-right: -30px;
+        }
+        &.rtl {
+            margin-left: -30px;
+        }
+    }
+    div.one-doc.rtl p {
+        font-size:80%;
+        margin-left: 5px;
+    }
+    div.one-doc.ltr p {
+        font-size:86%;
+        margin-right:5px;
+    }
+}
+
+#doc-area span {
+    width: 100%;
+    line-height:36px;
+    color: white;
+    margin-bottom: 12px;
+}
+
+#doc-filters {
+    margin-right: 20px;
+    margin-left: 20px;
+}

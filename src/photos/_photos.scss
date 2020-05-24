@@ -1,0 +1,149 @@
+@include mobile { @import 'photos.mobile'; }
+@include desktop { @import 'photos.desktop'; }
+@include desktop { @import 'range'; }
+
+a.photo-selected img{
+    border: 8px solid lightblue;
+}
+
+.multi-select .search-filter {
+    width: 90%;
+}
+
+a.photo-maximizer {
+    position:absolute;
+    right:0px;
+    cursor:sw-resize;
+    opacity:0.5;
+    &:hover {
+        opacity: 1.0;
+    }
+}
+
+div.panel.panel-default {
+    background-color: white;
+}
+
+.photos .date-range label {
+    margin-right: -3px;
+    padding: 4px;
+    float: right;
+    font-size:90%;
+}
+
+.photo-detail {
+    margin-left:auto;
+    margin-right:auto;
+    min-height:755px;
+    editable div.story-section {
+        height: 150px;
+    }
+    .date-range { 
+        label {
+            margin-right:-4px;
+            margin-left: 10px;
+            padding:4px;
+            width:100px;
+        }
+        input {
+            width: 322px;
+        }
+    }
+    img {
+        cursor: pointer;
+        float:left;
+    }
+    date-range label {
+        font-size: 14px;
+        font-weight: normal;
+    }
+    date-range {
+        height: 28px;
+    }
+}
+
+img.flipable {
+    border-right: solid 12px orange;
+}
+
+img.duplicate {
+    opacity: 0.25;
+}
+
+img.similar {
+    border-radius: 20%;
+}
+
+#photos-container {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#photos_area {
+    width: 100%;
+    margin-bottom: 24px;
+    margin-top: 20px;
+    padding-right: 24px;
+}
+
+div.current-photo {
+    border: 3px solid yellow;
+    img {
+        border-radius: 25%;
+    }
+}
+
+div#photo-container>div {
+    padding: 0;
+    margin: 0;
+}
+
+div.slide {
+    div.centered-form {
+        background-color: rgba(0,0,0,0);
+        font-size: 130%;
+    }
+    ux-dialog-container>div {
+        margin-left: 0;
+    }
+    ux-dialog-header {
+        width: 100%;
+        background-color: rgba(255,255,255,0.5);
+   }
+    ux-dialog-body {
+        width: 100%;
+    }
+
+    div.face-movers {
+        display:flex;
+        justify-content:space-between;
+        margin-top: 12px;
+        i {
+            cursor: pointer;
+        }
+    }
+    table {
+        margin-top: 10px;
+        i {
+            font-size:200%;
+            margin-right: 22px;
+            margin-left: 22px;
+            cursor: pointer;
+        }
+    }
+}
+
+i.disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+}
+
+div.photo-story {
+    padding-top:8px;
+    width:100%;
+    height:calc(100vh - 200px);
+}

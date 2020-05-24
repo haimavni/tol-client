@@ -1,0 +1,12 @@
+<template>
+    <section class="container content-area">
+        <h2>Gallery</h2>
+        <div class="scaled-frame">
+            <div class="wrap" repeat.for="frm of frame_urls">
+                <iframe src.bind="frm.url" class="frame" width="1200" height="780"allow="fullscreen"></iframe>
+                <!-- <iframe repeat.for="frm of frame_urls" src.bind="frm.url" class="frame" width="1200" height="780"></iframe> -->
+            </div>
+        </div>
+    </section>s
+
+</template>

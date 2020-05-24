@@ -1,0 +1,7 @@
+#term-list {
+    height: calc(100vh - 300px);
+    &.empty-terms {
+        height: 300px;
+    }
+    overflow: auto;
+}

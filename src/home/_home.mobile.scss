@@ -1,0 +1,26 @@
+.main-panel.panel {
+    height: auto !important;
+    flex-direction: column-reverse;
+
+    > * + * {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.panel-stories .panel-story-segment + .panel-story-segment {
+    margin-top: 2rem;
+}
+
+.panel-vid {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    span {
+        width: 230px;
+        height: 140px;
+    }
+}
+
+.member-of-the-day {
+    height: 100%;
+}

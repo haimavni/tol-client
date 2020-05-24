@@ -1,0 +1,90 @@
+<template>
+    <ux-dialog css="direction:${theme.rtltr}">
+        <ux-dialog-header>
+            <div>
+                <h2 class="center">${'user.customize' & t}</h2>
+            </div>
+        </ux-dialog-header>
+        <ux-dialog-body>
+            <div style="height:95%;margin-top:0px;">
+                <div class="row" style="display:flex;font-size:120%;">
+                    <!-- <div class="col-md-3">
+                        ${'user.site-header' & t}
+                    </div> -->
+                    <div class="col-md-12">
+                        <form class="form-inline">
+                            <div class="form-group" style="width:90%;">
+                                <input type="text" class="form-control" style="font-size:115%;width:100%;" placeholder="${'user.site-title' & t}"
+                                    value.bind="app_title">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" click.delegate="save_app_title()">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="display:flex;font-size:100%;">
+                    <!-- <div class="col-md-3">
+                        ${'user.site-description' & t}
+                    </div> -->
+                    <div class="col-md-12">
+                        <form class="form-inline">
+                            <div class="form-group" style="width:90%;">
+                                <input type="text" class="form-control" style="font-size:100%;width:100%;" placeholder="${'user.site-description' & t }"
+                                    value.bind="app_description"
+                                    change.delegate="save_app_description()">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" click.delegate="save_app_description()">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <h3 style="margin-right:-15px;margin-left:-15px;">${'user.customize-dictionary' & t}</h3>
+                </div>
+                <div class="row multi-select-div">
+                    <multi-select options.bind="key_value_list" settings.bind="options_settings" category="terminology"
+                        name-changed.delegate="dic_item_changed($event)" place_holder_text="user.enter-text-to-replace">
+                    </multi-select>
+                </div>
+                <div class="row">
+                    <h3>${'user.config' & t}</h3>
+                </div>
+                <div class="custom-options">
+                    <div class="row" style="margin-bottom:5px;">
+                        <button repeat.for="uf of auto_reg_options" style="margin-left:8px;width:200px;"
+                            class="btn btn-${uf==auto_reg_option ? 'primary' : 'default'} customization"
+                            click.delegate="auto_reg_option_selected(uf)">
+                            <span style="font-weight:bolder">${uf & t}</span>
+                        </button>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <button repeat.for="na of new_app_options" style="margin-left:8px;width:200px;"
+                            class="btn btn-${na==new_app_option ? 'primary' : 'default'} customization"
+                            click.delegate="new_app_option_selected(na)">
+                            <span style="font-weight:bolder">${na & t}</span>
+                        </button>
+                    </div>
+                    <div class="row" style="margin-bottom:5px;">
+                        <button repeat.for="aud of audio_options" style="margin-left:8px;width:200px;"
+                            class="btn btn-${aud==audio_option ? 'primary' : 'default'} customization"
+                            click.delegate="audio_option_selected(aud)">
+                            <span style="font-weight:bolder">${aud & t}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ux-dialog-body>
+        <!-- <ux-dialog-footer>
+            <button type="button" class="btn btn-primary" click.delegate="save()">${'members.save' & t}</button>
+            <button type="button" class="btn btn-info" click.delegate="cancel()">${'members.cancel' & t}</button>
+        </ux-dialog-footer>
+    </ux-dialog> -->
+</template>

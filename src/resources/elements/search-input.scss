@@ -1,0 +1,26 @@
+div.search-input {
+    display: flex;
+    width: 98%;
+    i.remove {
+        top: 12px;
+        left: 10px;
+        color: gray;
+        position: absolute;
+    }
+    div.spyglass-div {
+        width: 40px;
+        height: 32px;
+        background-color: #eaeaea;
+        border: 1px solid gray;
+        padding-top: 1px;
+    }
+    i.search {
+        color: gray;
+    }
+    input {
+        padding-left:24px;
+        padding-right:6px;
+        width: 100%;
+        height: 33px;
+    }
+}
