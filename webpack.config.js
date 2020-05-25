@@ -263,6 +263,11 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
             "aurelia-froala-editor": ['./froala-editor'],
             "parent-module": ["child-module"],
         }),
+        new AureliaPlugin(),
+        new ModuleDependenciesPlugin({
+            "aurelia-interactjs": ['interact.js/interact'],
+            "parent-module": ["child-module"],
+        }),
         new CopyWebpackPlugin([
           { from: 'src/locales/', to: 'locales/' }
         ]),

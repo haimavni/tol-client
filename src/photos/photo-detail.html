@@ -49,11 +49,11 @@
                     <div class="fr-view" dir="rtl">
                         <div if.bind="map_visible">
                             <google-map
-                              longitude.two-way="longitude" 
-                              altitude.two-way="altitude"
-                              click.delegate="create_marker($event)" 
-                              markers.bind="markers" 
-                              auto-update-bounds="true" >
+                                longitude.two-way="longitude" 
+                                altitude.two-way="altitude"
+                                map-click.delegate="create_marker($event)" 
+                                markers.bind="markers" 
+                                auto-update-bounds="true" >
                             </google-map>
                         </div>
                         <div style="padding-right:0" if.bind="! map_visible">

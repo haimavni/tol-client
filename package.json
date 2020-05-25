@@ -29,7 +29,6 @@
     "fs-extra": "^9.0.0",
     "i18next": "^19.4.4",
     "i18next-xhr-backend": "^3.2.2",
-    "interactjs": "^1.9.17",
     "iscroll": "^5.2.0",
     "json.human": "0.0.1",
     "lodash": "^4.17.15",

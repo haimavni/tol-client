@@ -6,14 +6,20 @@ import { PLATFORM } from 'aurelia-pal';
 //import * as Backend from 'i18next-xhr-backend';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Router } from 'aurelia-router';
-import {I18N, TCustomAttribute} from 'aurelia-i18n';
+import { I18N, TCustomAttribute } from 'aurelia-i18n';
 import Backend from 'i18next-xhr-backend';
 //import "froala-editor/js/froala_editor.pkgd.min";
 
 export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
-        .feature(PLATFORM.moduleName('resources/index'));
+        .feature(PLATFORM.moduleName('resources/index'))
+        .feature(PLATFORM.moduleName('polyfills/index'))
+        .globalResources(PLATFORM.moduleName('services/user'))
+        .globalResources(PLATFORM.moduleName('services/cache'))
+        .globalResources(PLATFORM.moduleName('services/member_list'))
+        .globalResources(PLATFORM.moduleName('services/theme'))
+        .globalResources(PLATFORM.moduleName('user/user-mode'));
 
     aurelia.use
         .plugin(PLATFORM.moduleName('aurelia-google-maps'), config => {
@@ -31,26 +37,65 @@ export function configure(aurelia: Aurelia) {
                 }
             });
         })
-      .plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
-        let aliases = ['t', 'i18n'];
-        // add aliases for 't' attribute
-        TCustomAttribute.configureAliases(aliases);
-  
-        // register backend plugin
-        instance.i18next.use(Backend);
-  
-        // adapt options to your needs (see http://i18next.com/docs/options/)
-        // make sure to return the promise of the setup method, in order to guarantee proper loading
-        return instance.setup({
-          backend: {                                  // <-- configure backend settings
-            loadPath: './locales/{{lng}}/{{ns}}.json', // <-- XHR settings for where to get the files from
-          },
-          attributes: aliases,
-          lng : 'he',
-          fallbackLng : 'he',
-          debug : false
-        });
-      });
+        .plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
+            let aliases = ['t', 'i18n'];
+            // add aliases for 't' attribute
+            TCustomAttribute.configureAliases(aliases);
+
+            // register backend plugin
+            instance.i18next.use(Backend);
+
+            // adapt options to your needs (see http://i18next.com/docs/options/)
+            // make sure to return the promise of the setup method, in order to guarantee proper loading
+            return instance.setup({
+                backend: {                                  // <-- configure backend settings
+                    loadPath: './locales/{{lng}}/{{ns}}' + environment.i18n_ver + '.json', // <-- XHR settings for where to get the files from
+                },
+                attributes: aliases,
+                lng: 'he',
+                fallbackLng: 'he',
+                debug: false
+            }).then(() => {
+                const router = aurelia.container.get(Router);
+                const events = aurelia.container.get(EventAggregator);
+
+                router.transformTitle = title => instance.tr(title);
+                events.subscribe('i18n:locale:changed', () => { router.updateTitle(); });
+            });
+        }).plugin(PLATFORM.moduleName('aurelia-dialog'), config => {
+          config.useDefaults();
+          config.settings.lock = true;
+          config.settings.centerHorizontalOnly = true;
+          config.settings.startingZIndex = 5;
+      })
+      .plugin(PLATFORM.moduleName('au-table'))
+      //.plugin(PLATFORM.moduleName('aurelia-interactjs'))
+      .plugin(PLATFORM.moduleName('aurelia-bootstrap'), config => {
+          config.options.accordionCloseOthers = true;
+          config.options.accordionGroupPanelClass = 'panel-default';
+          config.options.btnLoadingText = 'Loading...';
+          config.options.dropdownAutoClose = 'always';
+          config.options.paginationBoundaryLinks = false;
+          config.options.paginationDirectionLinks = true;
+          config.options.paginationFirstText = 'First';
+          config.options.paginationHideSinglePage = true;
+          config.options.paginationLastText = 'Last';
+          config.options.paginationNextText = '>';
+          config.options.paginationPreviousText = '<';
+          config.options.popoverPosition = 'right';
+          config.options.popoverTrigger = 'mouseover';
+          config.options.tabsetType = 'tabs';
+          config.options.tabsetVertical = false;
+          config.options.tooltipClass = 'tooltip';
+          config.options.tooltipPosition = 'top';
+          config.options.tooltipTrigger = 'mouseover';
+          config.options.videoDefaultDisplay = 'inline';
+          config.options.videoDefaultWidth = 160;
+          config.options.imageDefaultAlign = 'right';
+          config.options.imageDefaultDisplay = 'inline';
+          config.options.imageDefaultWidth = 100;
+          config.options.linkAlwaysBlank = true;
+      })
 
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-froala-editor'));
 
