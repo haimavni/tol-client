@@ -331,7 +331,10 @@ export class Photos {
         } else {
             this.curr_photo_id = slide.photo_id;
             event.stopPropagation();
-            this.openDialog(slide);
+            //this.openDialog(slide);
+            let photo_ids = this.photo_list.map(photo => photo.photo_id);
+            photo_ids = photo_ids.slice(0, 800); //to prevent server errors such as "invalid gateway"
+            this.router.navigateToRoute('photo-detail', { id: slide.photo_id, keywords: "", photo_ids: photo_ids,  pop_full_photo: true});
         }
     }
 

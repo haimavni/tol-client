@@ -8,7 +8,7 @@ export class App {
   place_marker(event) {
     console.log("event ", event.detail);
     //console.log("zoom: ", this.zoom, " longitude: ", this.longitude);
-    let latLng = event.detail.latLng,
+    let latLng = event.detail.latLng;
     this.latitude = latLng.lat();
     this.longitude = latLng.lng();
     this.markers = [{ latitude: this.latitude, longitude: this.longitude }];
