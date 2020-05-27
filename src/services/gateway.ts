@@ -112,6 +112,7 @@ export class MemberGateway {
         data = data ? data : {};
         data['ptp_key'] = this.constants.ptp_key;
         let x = JSON.stringify(data);
+        console.log("data to post to ", url, ": ", x);
         return this.httpClient.fetch(url, { method: "POST", body: x })
             .catch(error => alert("error: " + error))
             .then((result) => {

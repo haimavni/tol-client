@@ -1,0 +1,13 @@
+<template>
+    <require from="froala-editor/css/froala_editor.pkgd.min.css"></require>
+    <require from="froala-editor/css/froala_style.min.css"></require>
+
+    <froala-editor></froala-editor>
+    <h1>${message}</h1> ${'members.members' & t}
+    <div style="width:400px;height:400px;">
+        <google-map latitude.two-way="latitude" longitude.two-way="longitude" zoom.two-way="zoom"
+            map-click.delegate="place_marker($event)" bounds_change.delegate="zoom_changed($event)"
+            marker-click.delegate=zoom_changed($event) markers.bind="markers">
+        </google-map>
+    </div>
+</template>

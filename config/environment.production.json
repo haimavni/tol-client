@@ -1,4 +1,8 @@
 {
-  "debug": false,
-  "testing": false
-}
+    "debug": false,
+    "testing": false,
+    "baseURL": "",
+    "app": "",
+    "version": "",
+    "i18n_ver": ""
+  }
